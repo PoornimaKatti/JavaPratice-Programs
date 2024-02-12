@@ -1,0 +1,21 @@
+package com.JavaPratice;
+
+
+    class Animal7{
+        void eat(){System.out.println("eating...");}
+    }
+    class Dog4 extends Animal7{
+        void bark(){System.out.println("barking...");}
+    }
+    class BabyDog extends Dog4{
+        void weep(){System.out.println("weeping...");}
+    }
+    class TestInheritance2{
+        public static void main(String args[]){
+            BabyDog d=new BabyDog();
+            d.weep();
+            d.bark();
+            d.eat();
+        }}
+
+
