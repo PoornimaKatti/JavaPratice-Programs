@@ -1,49 +1,32 @@
-package com.JavaProgram;
+package com.NewJava;
 import java.util.Scanner;
 public class Convert {
-  public static void main(String[] args) {
-            Scanner scanner = new Scanner(System.in);
 
-            // Step 1: Get the input number
-            System.out.print("Enter a two-digit number (1 to 99): ");
-            int number = scanner.nextInt();
 
-            // Step 2: Convert the number to its word representation
-            String word = convertToWord(number);
+        private static final String[] units = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+        private static final String[] teens = {"ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
+        private static final String[] tens = {"", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
 
-            // Step 3: Output the word representation
-            System.out.println("In words: " + word);
-
-            scanner.close();
+        public static String convertToWords(int number) {
+            if (number < 10) {
+                return units[number];
+            } else if (number < 20) {
+                return teens[number - 10];
+            } else {
+                return tens[number / 10] + " " + units[number % 10];
+            }
         }
 
-        // Function to convert a two-digit number to its word representation
-        public static String convertToWord(int number) {
-            if (number < 1 || number > 99) {
-                return "Number out of range";
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Enter a two-digit number: ");
+            int number = scanner.nextInt();
+
+            if (number < 10 || number > 99) {
+                System.out.println("Please enter a valid two-digit number.");
+            } else {
+                System.out.println(convertToWords(number));
             }
-
-            String[] ones = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
-            String[] teens = {"ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
-            String[] tens = {"", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
-
-            // Convert the number to a string and then to a character array
-            char[] digits = String.valueOf(number).toCharArray();
-
-            // Handle the conversion based on the number of digits
-            if (digits.length == 1) {
-                return ones[number];
-            } else if (digits.length == 2) {
-                if (number < 20) {
-                    return teens[number - 10];
-                } else {
-                    int tensDigit = digits[0] - '0'; // Convert char to int
-                    int onesDigit = digits[1] - '0'; // Convert char to int
-                    return tens[tensDigit] + (onesDigit != 0 ? " " + ones[onesDigit] : "");
-                }
-            }
-
-            return "Invalid number";
         }
     }
 
